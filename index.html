@@ -204,7 +204,7 @@
 <body>
 
 <!-- Артқы фондағы аудио (Қыз ұзату әні) -->
-<audio id="bgMusic" loop preload="auto">
+<audio id="bgMusic" loop playsinline preload="metadata">
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -270,19 +270,20 @@
 
 <script>
     // 1. Музыка басқару
-    const music = document.getElementById("bgMusic");
-    const musicText = document.getElementById("musicText");
-    let isPlaying = false;
-
-    function toggleMusic() {
-        if (isPlaying) {
+   function toggleMusic() {
+        const music = document.getElementById("bgMusic");
+        const musicText = document.getElementById("musicText");
+        
+        if (music.paused) {
+            music.play().then(() => {
+                musicText.innerText = "Музыканы өшіру";
+            }).catch(error => {
+                console.log("Аудио ойнату қатесі:", error);
+            });
+        } else {
             music.pause();
             musicText.innerText = "Музыканы қосу";
-        } else {
-            music.play();
-            musicText.innerText = "Музыканы өшіру";
         }
-        isPlaying = !isPlaying;
     }
 
     // 2. Таймер (25 Қыркүйек 2026)
