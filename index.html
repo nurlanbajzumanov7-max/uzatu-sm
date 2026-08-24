@@ -19,7 +19,7 @@
             position: relative;
         }
 
-        /* Бетті орайтын негізгі блок */
+        /* Негізгі карточка */
         .card {
             max-width: 500px;
             margin: 0 auto;
@@ -30,7 +30,23 @@
             border: 1px solid #f2d6dc;
             position: relative;
             z-index: 2;
+            overflow: hidden;
         }
+
+        /* Фондық көркемдеу (Бұрыштардағы ою-өрнектер) */
+        .card::before, .card::after {
+            content: "";
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            opacity: 0.12;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23b85b73"><path d="M50 0 C60 25 75 40 100 50 C75 60 60 75 50 100 C40 75 25 60 0 50 C25 40 40 25 50 0 Z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+        }
+        .card::before { top: 10px; left: 10px; }
+        .card::after { bottom: 10px; right: 10px; transform: rotate(180deg); }
 
         h1 {
             font-family: 'Great Vibes', cursive;
@@ -49,6 +65,22 @@
             margin-bottom: 25px;
         }
 
+        /* Музыка батырмасы */
+        .music-btn {
+            background: #b85b73;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(184, 91, 115, 0.3);
+            transition: transform 0.2s;
+        }
+        .music-btn:active { transform: scale(0.95); }
+
         /* Фото рамасы */
         .photo-frame {
             width: 190px;
@@ -66,22 +98,6 @@
             object-fit: cover;
         }
 
-        /* Музыка батырмасы */
-        .music-btn {
-            background: #b85b73;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(184, 91, 115, 0.3);
-            transition: transform 0.2s;
-        }
-        .music-btn:active { transform: scale(0.95); }
-
         .text-body {
             line-height: 1.8;
             font-size: 15px;
@@ -89,11 +105,12 @@
             margin-bottom: 25px;
         }
         .bride-name {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 700;
             color: #b85b73;
             display: block;
             margin: 10px 0;
+            letter-spacing: 1px;
         }
 
         /* Ақпараттық блок */
@@ -109,6 +126,51 @@
             font-size: 15px;
         }
         .info-item strong { color: #b85b73; }
+
+        /* Instagram & Хэштег блогы */
+        .insta-box {
+            background: linear-gradient(135deg, #fdf0f3, #f7e8ec);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 25px;
+        }
+        .hashtag {
+            font-size: 18px;
+            font-weight: 700;
+            color: #b85b73;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* Байланыс телефоны блогы */
+        .contacts-box {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .contacts-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #8c7b83;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .phone-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .phone-btn {
+            background: #ffffff;
+            border: 1px solid #e8a5b8;
+            color: #b85b73;
+            padding: 8px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
 
         /* Таймер */
         .timer-title {
@@ -159,6 +221,7 @@
             cursor: pointer;
         }
         .btn-2gis { background: #64b5f6; }
+        .btn-insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
 
         /* Сауалнама формасы */
         .rsvp-box {
@@ -185,7 +248,7 @@
             outline: none;
         }
 
-        /* Гүл жапырақтарының анимациясы (Ең алдыңғы планда ойнайды) */
+        /* Гүл жапырақтарының анимациясы */
         .petal {
             position: fixed;
             top: -20px;
@@ -214,7 +277,7 @@
     <h1>Қыз Ұзату</h1>
     <div class="subtitle">Тойға шақыру</div>
 
-    <!-- Музыка қосу/өшіру батырмасы -->
+    <!-- Музыка батырмасы -->
     <button onclick="toggleMusic()" class="music-btn">
         🎵 <span id="musicText">Музыканы қосу</span>
     </button>
@@ -239,6 +302,13 @@
         <div class="info-item">📍 <strong>Мекен-жайы:</strong> Сарқан қаласы,<br>Төлеген Тоқтаров көшесі, 39 үй</div>
     </div>
 
+    <!-- Instagram & Хэштег блогы -->
+    <div class="insta-box">
+        <span class="hashtag">#SmalUzatu2026</span>
+        <p style="font-size: 13px; margin: 0 0 12px 0; color: #666;">Тойда түсірілген фото-видеоларыңызды осы хэштегпен бөлісіңіздер!</p>
+        <a href="https://instagram.com" target="_blank" class="btn btn-insta" style="margin-bottom:0; font-size:13px; padding:10px;">📸 Instagram-да бөлісу / Маска</a>
+    </div>
+
     <!-- Кері есептеу таймері -->
     <div class="timer-title">Тойдың басталуына қалды:</div>
     <div class="timer">
@@ -251,6 +321,14 @@
     <!-- Навигация батырмалары -->
     <a href="https://www.google.com/maps/search/?api=1&query=Казахстан+Сарканд+Токтарова+39" target="_blank" class="btn">🗺️ Google Maps арқылы ашу</a>
     <a href="https://2gis.kz/search/Сарканд%20Токтарова%2039" target="_blank" class="btn btn-2gis">🌐 2GIS арқылы ашу</a>
+
+    <!-- Байланыс телефондары -->
+    <div class="contacts-box">
+        <div class="contacts-title">Той иелерімен байланыс:</div>
+        <div class="phone-buttons">
+            <a href="tel:+77002746834" class="phone-btn">📞 Нұрлан: +7 700 274 68 34</a>
+        </div>
+    </div>
 
     <!-- Сауалнама (RSVP) -->
     <div class="rsvp-box">
@@ -308,7 +386,7 @@
     function sendRSVP() {
         const name = document.getElementById("guestName").value.trim();
         const status = document.getElementById("attendance").value;
-        const myPhone = "77002746834"; // WhatsApp номеріңіз
+        const myPhone = "77002746834";
 
         if (!name) {
             alert("Өтініш, аты-жөніңізді енгізіңіз!");
@@ -330,7 +408,6 @@
         petal.style.width = size + 'px';
         petal.style.height = (size * 1.3) + 'px';
         
-        // Түстерін әртүрлі қызғылт/алтын түсті ету
         const colors = ['#f4a261', '#e8a5b8', '#fcd5ce', '#e76f51'];
         petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         
