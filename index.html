@@ -3,42 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Қыз Ұзату Тойға Шақыру</title>
+    <title>Қыз Ұзату — Смал</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Georgia', serif; background-color: #fdf8f5; color: #4a4a4a; text-align: center; margin: 0; padding: 20px; }
-        .card { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 2px solid #f3e5f5; }
-        h1 { color: #8e24aa; font-size: 28px; margin-bottom: 5px; }
-        .subtitle { font-style: italic; color: #7b1fa2; font-size: 18px; margin-top: 0; }
-        .photo-frame { width: 180px; height: 180px; margin: 20px auto; border-radius: 50%; overflow: hidden; border: 4px solid #ba68c8; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
-        .text { line-height: 1.8; font-size: 16px; margin: 20px 0; }
-        .info-box { background: #fef4f8; padding: 15px; border-radius: 12px; margin: 20px 0; border: 1px dashed #ce93d8; }
-        .btn { display: inline-block; background: linear-gradient(45deg, #ab47bc, #8e24aa); color: white; padding: 12px 25px; text-decoration: none; border-radius: 25px; font-weight: bold; margin-top: 10px; box-shadow: 0 4px 10px rgba(142, 36, 170, 0.3); }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 20px 10px;
+            font-family: 'Montserrat', sans-serif;
+            background: #fdf6f0;
+            color: #4a4a4a;
+            text-align: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Бетті орайтын негізгі блок */
+        .card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 35px 20px;
+            box-shadow: 0 15px 35px rgba(216, 112, 147, 0.15);
+            border: 1px solid #f2d6dc;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 52px;
+            color: #b85b73;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #8c7b83;
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        /* Фото рамасы */
+        .photo-frame {
+            width: 190px;
+            height: 190px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            padding: 7px;
+            background: linear-gradient(135deg, #e8a5b8, #fcd5ce);
+            box-shadow: 0 8px 20px rgba(184, 91, 115, 0.2);
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Музыка батырмасы */
+        .music-btn {
+            background: #b85b73;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(184, 91, 115, 0.3);
+            transition: transform 0.2s;
+        }
+        .music-btn:active { transform: scale(0.95); }
+
+        .text-body {
+            line-height: 1.8;
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+        .bride-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #b85b73;
+            display: block;
+            margin: 10px 0;
+        }
+
+        /* Ақпараттық блок */
+        .info-card {
+            background: #fff8f9;
+            border: 1px dashed #e8a5b8;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .info-item {
+            margin: 10px 0;
+            font-size: 15px;
+        }
+        .info-item strong { color: #b85b73; }
+
+        /* Таймер */
+        .timer-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8c7b83;
+            margin-bottom: 10px;
+        }
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .timer-block {
+            background: #fdf0f3;
+            padding: 10px;
+            border-radius: 12px;
+            min-width: 65px;
+        }
+        .timer-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #b85b73;
+            display: block;
+        }
+        .timer-label {
+            font-size: 10px;
+            color: #8c7b83;
+            text-transform: uppercase;
+        }
+
+        /* Батырмалар */
+        .btn {
+            display: block;
+            width: 100%;
+            background: #b85b73;
+            color: white;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 5px 15px rgba(184, 91, 115, 0.25);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-2gis { background: #64b5f6; }
+
+        /* Сауалнама формасы */
+        .rsvp-box {
+            background: #fcf4f6;
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 25px;
+            text-align: left;
+        }
+        .rsvp-box h3 {
+            text-align: center;
+            color: #b85b73;
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 13px; margin-bottom: 5px; color: #666; }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e2c0c8;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        /* Гүл жапырақтарының анимациясы */
+        .petal {
+            position: fixed;
+            background-color: #fbcfe8;
+            border-radius: 150% 0 150% 0;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 1;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translate(0, -10px) rotate(0deg); opacity: 0.8; }
+            100% { transform: translate(100px, 100vh) rotate(360deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
 
+<!-- Артқы фондағы аудио (Қыз ұзату әні) -->
+<audio id="bgMusic" loop preload="auto">
+    <source src="https://cdns.topkaz.kz/files/musics/Akerke_Tajibaeva_-_Kyz_uzatu_(topkaz.kz).mp3" type="audio/mpeg">
+</audio>
+
 <div class="card">
-    <h1>ҚЫЗ ҰЗАТУ</h1>
-    <p class="subtitle">Тойға шақыру</p>
+    <h1>Қыз Ұзату</h1>
+    <div class="subtitle">Тойға шақыру</div>
 
+    <!-- Музыка қосу/өшіру батырмасы -->
+    <button class="music-btn" onclick="toggleMusic()">🎵 <span id="musicText">Музыканы қосу</span></button>
+
+    <!-- Сурет -->
     <div class="photo-frame">
-        <img src="photo.jpg" alt="Сурет">
+        <img src="photo.jpg" alt="Смал">
     </div>
 
-    <div class="text">
-        <p>Құрметті ағайын-туыс, бауырлар, дос-жарандар мен әріптестер!</p>
-        <p>Сіздерді сүйікті қызымыз <strong>Смалдың</strong> ұзату тойына арналған салтанатты ақ дастарханымыздың қадірлі қонағы болуға шақырамыз!</p>
+    <!-- Шақыру мәтіні -->
+    <div class="text-body">
+        <p>Құрметті ағайын-туыс, бауырлар,<br>дос-жарандар мен әріптестер!</p>
+        <p>Сіздерді сүйікті қызымыз</p>
+        <span class="bride-name">СМАЛДЫҢ</span>
+        <p>ұзату тойына арналған салтанатты ақ дастарханымыздың қадірлі қонағы болуға шақырамыз!</p>
     </div>
 
-    <div class="info-box">
-        <p>📅 <strong>Күні:</strong> 2026 жыл, Күз</p>
-        <p>⏰ <strong>Уақыты:</strong> 18:00</p>
-        <p>📍 <strong>Мекен-жайы:</strong> «Салтанат» рестораны</p>
+    <!-- Уақыты мен Мекен-жайы -->
+    <div class="info-card">
+        <div class="info-item">📅 <strong>Күні:</strong> 25 Қыркүйек 2026 жыл</div>
+        <div class="info-item">⏰ <strong>Уақыты:</strong> 18:00</div>
+        <div class="info-item">📍 <strong>Мекен-жайы:</strong> Сарқан қаласы,<br>Төлеген Тоқтаров көшесі, 39 үй</div>
     </div>
 
-    <a href="https://maps.google.com" target="_blank" class="btn">🗺️ Картадан қарау</a>
+    <!-- Кері есептеу таймері -->
+    <div class="timer-title">Тойдың басталуына қалды:</div>
+    <div class="timer">
+        <div class="timer-block"><span class="timer-number" id="days">00</span><span class="timer-label">Күн</span></div>
+        <div class="timer-block"><span class="timer-number" id="hours">00</span><span class="timer-label">Сағат</span></div>
+        <div class="timer-block"><span class="timer-number" id="minutes">00</span><span class="timer-label">Минут</span></div>
+        <div class="timer-block"><span class="timer-number" id="seconds">00</span><span class="timer-label">Секунд</span></div>
+    </div>
+
+    <!-- Навигация батырмалары -->
+    <a href="https://www.google.com/maps/search/?api=1&query=Казахстан+Сарканд+Токтарова+39" target="_blank" class="btn">🗺️ Google Maps арқылы ашу</a>
+    <a href="https://2gis.kz/search/Сарканд%20Токтарова%2039" target="_blank" class="btn btn-2gis">🌐 2GIS арқылы ашу</a>
+
+    <!-- Сауалнама (RSVP) -->
+    <div class="rsvp-box">
+        <h3>Жауабыңызды қалдырыңыз</h3>
+        <div class="form-group">
+            <label>Аты-жөніңіз:</label>
+            <input type="text" id="guestName" placeholder="Мысалы: Арман мен Аружан">
+        </div>
+        <div class="form-group">
+            <label>Тойға келесіз бе?</label>
+            <select id="attendance">
+                <option value="Өкінішке орай, келе алмаймын">Өкінішке орай, келе алмаймын</option>
+                <option value="Жұбайыммен келемін">Жұбайыммен келемін</option>
+                <option value="Жалғыз келемін">Жалғыз келемін</option>
+                <option value="Отбасымызбен келеміз">Отбасымызбен келеміз</option>
+            </select>
+        </div>
+        <button class="btn" onclick="sendRSVP()" style="margin-bottom:0;">📲 WhatsApp арқылы растау</button>
+    </div>
 </div>
+
+<script>
+    // 1. Музыка басқару
+    const music = document.getElementById("bgMusic");
+    const musicText = document.getElementById("musicText");
+    let isPlaying = false;
+
+    function toggleMusic() {
+        if (isPlaying) {
+            music.pause();
+            musicText.innerText = "Музыканы қосу";
+        } else {
+            music.play();
+            musicText.innerText = "Музыканы өшіру";
+        }
+        isPlaying = !isPlaying;
+    }
+
+    // 2. Таймер (25 Қыркүйек 2026)
+    const eventDate = new Date("Sep 25, 2026 18:00:00").getTime();
+    setInterval(function() {
+        const now = new Date().getTime();
+        const diff = eventDate - now;
+
+        if (diff > 0) {
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+        }
+    }, 1000);
+
+    // 3. WhatsApp-қа жауап жіберу
+    function sendRSVP() {
+        const name = document.getElementById("guestName").value.trim();
+        const status = document.getElementById("attendance").value;
+        const myPhone = "77002746834"; // WhatsApp номеріңіз
+
+        if (!name) {
+            alert("Өтініш, аты-жөніңізді енгізіңіз!");
+            return;
+        }
+
+        const text = `Сәлеметсіз бе! Менің атым: ${name}. Смалдың ұзату тойына шақыру бойынша жауабым: ${status}.`;
+        window.open(`https://wa.me/${myPhone}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    // 4. Гүл жапырақшаларының анимациясы
+    function createPetal() {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.animationDuration = Math.random() * 3 + 4 + 's';
+        petal.style.width = Math.random() * 12 + 8 + 'px';
+        petal.style.height = petal.style.width;
+        document.body.appendChild(petal);
+
+        setTimeout(() => { petal.remove(); }, 7000);
+    }
+    setInterval(createPetal, 400);
+</script>
 
 </body>
 </html>
