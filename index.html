@@ -71,9 +71,9 @@
             background: #b85b73;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 20px;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             margin-bottom: 25px;
@@ -203,8 +203,8 @@
 </head>
 <body>
 
-<!-- Артқы фондағы аудио (Қыз ұзату әні) -->
-<audio controls style="margin: 20px auto; display: block; width: 80%;">
+<!-- Аудио файл (жасырын түрде тұрады, батырма арқылы басқарылады) -->
+<audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
     <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-wedding-488.mp3" type="audio/mpeg">
 </audio>
@@ -214,9 +214,9 @@
     <div class="subtitle">Тойға шақыру</div>
 
     <!-- Музыка қосу/өшіру батырмасы -->
-   <button onclick="toggleMusic()" class="music-btn">
-    🎵 <span id="musicText">Музыканы қосу</span>
-</button>
+    <button onclick="toggleMusic()" class="music-btn">
+        🎵 <span id="musicText">Музыканы қосу</span>
+    </button>
 
     <!-- Сурет -->
     <div class="photo-frame">
@@ -273,7 +273,7 @@
 
 <script>
     // 1. Музыка басқару
-   function toggleMusic() {
+    function toggleMusic() {
         const music = document.getElementById("bgMusic");
         const musicText = document.getElementById("musicText");
         
