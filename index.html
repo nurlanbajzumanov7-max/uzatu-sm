@@ -204,7 +204,8 @@
 <body>
 
 <!-- Артқы фондағы аудио (Қыз ұзату әні) -->
-<audio id="bgMusic" loop playsinline preload="metadata">
+<audio id="bgMusic" loop playsinline preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
     <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-wedding-488.mp3" type="audio/mpeg">
 </audio>
 
@@ -213,7 +214,9 @@
     <div class="subtitle">Тойға шақыру</div>
 
     <!-- Музыка қосу/өшіру батырмасы -->
-    <button class="music-btn" onclick="toggleMusic()">🎵 <span id="musicText">Музыканы қосу</span></button>
+   <button onclick="toggleMusic()" class="music-btn">
+    🎵 <span id="musicText">Музыканы қосу</span>
+</button>
 
     <!-- Сурет -->
     <div class="photo-frame">
